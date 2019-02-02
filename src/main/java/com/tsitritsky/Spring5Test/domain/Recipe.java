@@ -1,6 +1,9 @@
 package com.tsitritsky.Spring5Test.domain;
 
+import net.bytebuddy.description.field.FieldDescription;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -16,6 +19,10 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredient;
+    @Lob
     private byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL)
